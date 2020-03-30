@@ -10,10 +10,10 @@ const styles = StyleSheet.create({
     },
 });
 
-export default function CalcButton({text, onPress}) {
+export default function CalcButton({text, onPress, active}) {
     return(
         <View style={styles.container}>
-            <Button
+            <Button color={active ? "#f05a3c" : "#2196f3"}
                 title={text}
                 onPress={onPress}
             />

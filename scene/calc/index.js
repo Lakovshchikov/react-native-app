@@ -37,13 +37,15 @@ export default class Calculator extends Component{
         this.state={
             input1: 0,
             input2: 0,
-            result: 0
+            result: 0,
+            activeAction: ""
         }
     }
 
     calc(action){
         const {input1, input2} = this.state;
         let result = 0;
+        debugger
         switch (action) {
             case "+":
                 result = input1 + input2;
@@ -62,7 +64,7 @@ export default class Calculator extends Component{
     }
 
     render() {
-        const {input1, input2, result} = this.state;
+        const {input1, input2, result, activeAction} = this.state;
 
         return(
             <View style={{...styles.container, ...styles.containerVer}}>
@@ -90,19 +92,35 @@ export default class Calculator extends Component{
                     <View style={styles.row}>
                         <CalcButton
                             text={"+"}
-                            onPress={()=>{this.calc("+")}}
+                            onPress={()=>{
+                                this.setState({activeAction:"+"});
+                                this.calc("+");
+                            }}
+                            active={activeAction === "+"}
                         />
                         <CalcButton
                             text={"-"}
-                            onPress={()=>{this.calc("-")}}
+                            onPress={()=>{
+                                this.setState({activeAction:"-"});
+                                this.calc("-");
+                            }}
+                            active={activeAction === "-"}
                         />
                         <CalcButton
                             text={"*"}
-                            onPress={()=>{this.calc("*")}}
+                            onPress={()=>{
+                                this.setState({activeAction:"*"});
+                                this.calc("*");
+                            }}
+                            active={activeAction === "*"}
                         />
                         <CalcButton
                             text={"/"}
-                            onPress={()=>{this.calc("/")}}
+                            onPress={()=>{
+                                this.setState({activeAction:"/"});
+                                this.calc("/");
+                            }}
+                            active={activeAction === "/"}
                         />
                     </View>
                 </View>
